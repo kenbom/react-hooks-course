@@ -4,7 +4,7 @@ import { LabeledInput } from "../components"
 import { initialPerson } from "../utils"
 
 export function PersonEditor(): ReactElement {
-  const [person, setPerson] = useState(initialPerson)
+  const [person, setPerson] = useState(()=>initialPerson)
 
   return (
     <form
@@ -19,12 +19,31 @@ export function PersonEditor(): ReactElement {
         label="Firstname:"
         value={person.firstname}
         onChange={(e) => {
-          const newPerson = {
+          // const newPerson = {
+          //   ...person,
+          //   firstname: e.target.value,
+          // }
+          setPerson((person)=>({
             ...person,
-            firstname: e.target.value,
-          }
-          setPerson(newPerson)
+            firstname: e.target.value
+          })
+          )
+
+        if (e.target.value === "Ford"){
+          setPerson((person) =>({
+            ...person,
+            surname: "Prefect",
+            address: "Outer space",
+            email: "",
+            phone: "",
+          }))
+        }
         }}
+
+
+        // onChange={(e)=>
+        //   setPerson((state)=>({ ...state, firstname: e.target.value }))
+        // }
       />
       <LabeledInput
         label="Surname:"
