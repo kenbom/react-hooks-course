@@ -19,15 +19,12 @@ export function PersonEditor(): ReactElement {
         label="Firstname:"
         value={person.firstname}
         onChange={(e) => {
-          // const newPerson = {
-          //   ...person,
-          //   firstname: e.target.value,
-          // }
-          setPerson((person)=>({
+          const newPerson = {
             ...person,
-            firstname: e.target.value
-          })
-          )
+            firstname: e.target.value,
+          }
+          setPerson(newPerson)
+        
 
         if (e.target.value === "Ford"){
           setPerson((person) =>({
@@ -39,11 +36,6 @@ export function PersonEditor(): ReactElement {
           }))
         }
         }}
-
-
-        // onChange={(e)=>
-        //   setPerson((state)=>({ ...state, firstname: e.target.value }))
-        // }
       />
       <LabeledInput
         label="Surname:"
